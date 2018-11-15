@@ -1,5 +1,4 @@
-# This file's functions are based off the files provided by the AWS tutorial: https://aws.amazon.com/getting-started/projects/create-manage-nonrelational-database-dynamodb/ 
-
+# This file's functions are based off the files provided by the AWS tutorial: https://aws.amazon.com/getting-started/projects/create-manage-nonrelational-database-dynamodb/
 
 import boto3
 from boto3.dynamodb.conditions import Key
@@ -12,26 +11,26 @@ dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 table = dynamodb.Table('Inventory')
 
 # When making a GetItem call, we specify the Primary Key attributes defined on our table for the desired item.
-def get_item(item_name, item_author):
-    return table.get_item(Key = {"Title": item_name, "Author": item_author})['Item']
+def get_item(book_title, author):
+    return table.get_item(Key = {"Title": book_title, "Author": author})['Item']
 
 # insert a specified item into the table
-def insert(item_name, manufacturer_name, category_type, num_in_stock, current_rating):
+def insert(book_title, author, category_type, num_in_stock, current_rating):
     with table.batch_writer() as batch:
-        batch.put_item(Item={"Title": item_name, "Author": manufacturer_name, "Category": category_type, "NumInStock": num_in_stock, "Rating": current_rating})
-            
+        batch.put_item(Item={"Title": book_title, "Author": author, "Category": category_type, "NumInStock": num_in_stock, "Rating": current_rating})
+
 # gets all items in a table made by the specified manufacturer
-def query_by_manufacturer(manufacturer):
-    resp = table.query(KeyConditionExpression=Key('Author').eq(manufacturer))
+def query_by_author(author):
+    resp = table.query(KeyConditionExpression=Key('Author').eq(author))
 
     print("The query returned the following items:")
     for item in resp['Items']:
         print(item)
-        
+
 # updates the specified field of a certain item
-def update_item(item_name, item_manufacturer, update_field, update_value):
+def update_item(book_title, author, update_field, update_value):
     table.update_item(
-        Key={"Title": item_name, "Author": item_manufacturer},
+        Key={"Title": book_title, "Author": author},
         # Expression attribute names specify placeholders for attribute names to use in your update expressions.
         ExpressionAttributeNames={
             "#update": update_field,
@@ -45,7 +44,7 @@ def update_item(item_name, item_manufacturer, update_field, update_value):
         UpdateExpression="SET #update = :id",
 )
 
-    
+
 # category is a secondary key added after the table creation
 def query_by_category(category):
     # When adding a global secondary index to an existing table, you cannot query the index until it has been backfilled.

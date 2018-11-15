@@ -1,4 +1,4 @@
-# This file is based off the one provided by the AWS tutorial: https://aws.amazon.com/getting-started/projects/create-manage-nonrelational-database-dynamodb/ 
+# This file is based off the one provided by the AWS tutorial: https://aws.amazon.com/getting-started/projects/create-manage-nonrelational-database-dynamodb/
 
 import boto3
 
@@ -9,9 +9,6 @@ dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 table = dynamodb.Table('Inventory')
 
 # When making a GetItem call, we specify the Primary Key attributes defined on our table for the desired item.
-resp = table.get_item(Key={"Item": "Samsung Galaxy S5", "Manufacturer": "Samsung"})
+resp = table.get_item(Key={"Title": "Harry Potter", "Author": "J.K. Rowling"})
 
 print(resp['Item'])
-
-
-

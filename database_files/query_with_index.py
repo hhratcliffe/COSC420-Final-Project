@@ -1,4 +1,4 @@
-# This file is based off the one provided by the AWS tutorial: https://aws.amazon.com/getting-started/projects/create-manage-nonrelational-database-dynamodb/ 
+# This file is based off the one provided by the AWS tutorial: https://aws.amazon.com/getting-started/projects/create-manage-nonrelational-database-dynamodb/
 
 import time
 
@@ -26,7 +26,7 @@ while True:
 resp = table.query(
     # Add the name of the index you want to use in your query.
     IndexName="CategoryIndex",
-    KeyConditionExpression=Key('Category').eq('Electronics'),
+    KeyConditionExpression=Key('Category').eq('Ficiton'),
 )
 
 print("The query returned the following items:")
