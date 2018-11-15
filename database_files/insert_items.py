@@ -1,4 +1,4 @@
-# This file is based off the one provided by the AWS tutorial: https://aws.amazon.com/getting-started/projects/create-manage-nonrelational-database-dynamodb/ 
+# This file is based off the one provided by the AWS tutorial: https://aws.amazon.com/getting-started/projects/create-manage-nonrelational-database-dynamodb/
 
 # Inserts specified items into a specific database table
 # Allows us to insert a large amount of items into the table at once
@@ -20,6 +20,6 @@ with table.batch_writer() as batch:
      #   "Category": "Suspense", "Formats": { "Hardcover": "J4SUKVGU", "Paperback": "D7YF4FCX" } })
 
     # Our items start here
-    batch.put_item(Item={"Item": "Samsung Galaxy S7", "Manufacturer": "Samsung", "Category": "Electronics", "NumInStock": "3", "Rating": "4.2"})
-    batch.put_item(Item={"Item": "Samsung Galaxy S5", "Manufacturer": "Samsung", "Category": "Electronics", "NumInStock": "7", "Rating": "3.2"})
-   # batch.put_item(Item={"Item": "Name of Item", "Manufacturer": "Name of Manufacturer", "Category": "Type of Item", "NumInStock": "4", "Rating": "5.0"})
+    batch.put_item(Item={"Title": "The Lorax", "Author": "Dr. Seuss", "Category": "Fiction", "NumInStock": "3", "Rating": "4.2"})
+    batch.put_item(Item={"Title": "Red Fish, Blue Fish, One Fish, Two Fish", "Author": "Dr. Seuss", "Category": "Fiction", "NumInStock": "7", "Rating": "3.2"})
+   # batch.put_item(Item={"Title": "Name of Item", "Author": "Name of Author", "Category": "Type of Book", "NumInStock": "4", "Rating": "5.0"})

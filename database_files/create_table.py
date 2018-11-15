@@ -1,4 +1,4 @@
-# This file is based off the one provided by the AWS tutorial: https://aws.amazon.com/getting-started/projects/create-manage-nonrelational-database-dynamodb/ 
+# This file is based off the one provided by the AWS tutorial: https://aws.amazon.com/getting-started/projects/create-manage-nonrelational-database-dynamodb/
 
 ### Notes about our Database tables###
 # How many tables do we want?
@@ -15,29 +15,29 @@ client = boto3.client('dynamodb', region_name='us-east-1')
 
 try:
     resp = client.create_table(
-        TableName="Inventory", 
+        TableName="Inventory",
         # Declare your Primary Keys in the KeySchema argument
         # Composite Primary Key - All items with the same partition key are stored together, in sorted order by sort key value.
         KeySchema=[
             {
                 "AttributeName": "Author", # PARTITION KEY - Author Name
-                "KeyType": "HASH" 
+                "KeyType": "HASH"
             },
             {
-                "AttributeName": "Title", # SORT KEY - Item Name 
-                "KeyType": "RANGE" 
+                "AttributeName": "Title", # SORT KEY - Book Title
+                "KeyType": "RANGE"
             }
         ],
-        
+
         # Any attributes used in KeySchema or Indexes must be declared in AttributeDefinitions
         # Defines attributes for the table
         AttributeDefinitions=[
             {
-                "AttributeName": "Title", # Item name will be a String
+                "AttributeName": "Title", # Title will be a String
                 "AttributeType": "S"
             },
             {
-                "AttributeName": "Author", # Author will be a string 
+                "AttributeName": "Author", # Author will be a string
                 "AttributeType": "S"
             }
         ],
