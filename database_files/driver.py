@@ -5,7 +5,7 @@ import time
 print("Running driver.py")
 
 # create table
-#import create_table
+import create_table
 
 # insert items into the table
 print("Inserting items into table")
