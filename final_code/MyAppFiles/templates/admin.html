@@ -1,0 +1,117 @@
+<!-- Group 2 - Harrison Ratcliffe, Julia Goyco, Stephanie Schoch, Toby Duncan
+ 
+Date: 12/6/18
+
+admin.html contains HTML for presenting admin page and
+passing data for admin functions to backend
+-->
+<!DOCTYPE html>
+<html>
+    <!-- JQuery scripts adapted from: https://pythonprogramming.net/jquery-flask-tutorial/
+    JQuery scripts for passing information to back end
+    JQuery scripts for deleting item. Sends item name to back end to delete it-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type=text/javascript>
+			$(function() {
+			  $('a#delete_item').bind('click', function() {
+				$.getJSON('/delete_item', {
+                  myitem: $('input[name="myitem"]').val(),
+				}, function(data) {
+				  $("#result").text(data.result);
+				});
+				return false;
+			  });
+			});
+		</script>
+    <!-- JQuery scripts for updating item.
+    Sends item name and stock info to back end to update it -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type=text/javascript>
+			$(function() {
+			  $('a#update_item').bind('click', function() {
+				$.getJSON('/update_item', {
+                  myitem2: $('input[name="myitem2"]').val(),
+				  mynum: $('input[name="mynum"]').val(),
+				}, function(data) {
+				  $("#result").text(data.result);
+				});
+				return false;
+			  });
+			});
+		</script>
+    <!-- JQuery scripts for adding item.
+    Sends item name and stock info to back end to add it -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type=text/javascript>
+			$(function() {
+			  $('a#add_item').bind('click', function() {
+				$.getJSON('/add_item', {
+                  myitem3: $('input[name="myitem3"]').val(),
+				  mynum2: $('input[name="mynum2"]').val(),
+				}, function(data) {
+				  $("#result").text(data.result);
+				});
+				return false;
+			  });
+			});
+		</script>
+<body>
+    <h2><b><ul>Admin Management Page</ul></b></h2>
+    <!-- Inserting item/stock information to web page -->
+    <br>
+    <p>Items: {{data}}</p>
+    <br>
+    <!-- Inputs for item to delete -->
+    <label><b>Delete Item</b></label>
+    <br>
+    <label>Item Name:</label>
+    <br>
+    <input id = "item" type=text name = myitem>
+    <br>
+    <br>
+    <!-- Calling delete item function when delete button is clicked -->
+    <a href=# id=delete_item><button>Delete Item</button></a>
+    <br>
+    <br>
+    <br>
+    <!-- Inputs for item/stock to update  -->
+    <label><b>Update Item</b></label>
+    <br>
+    <label>Item Name:</label>
+    <br>
+    <input id = "item2" type=text name =myitem2>
+    <br>
+    <label>Stock:</label>
+    <br>
+    <input id = "number" type=number name =mynum>
+    <br>
+    <br>
+    <!-- Calling update item function when Update Item button is clicked -->
+    <a href=# id=update_item><button>Update Item</button></a>
+    
+    <br>
+    <br>
+    <br>
+    <!-- Inputs for item/stock to add  -->
+    <label><b>Add Item</b></label>
+    <br>
+    <label>Item Name:</label>
+    <br>
+    <input id = "item3" type=text name =myitem3>
+    <br>
+    <label>Stock:</label>
+    <br>
+    <input id = "number2" type=number name =mynum2>
+    <br>
+    <br>
+    <!-- Calling add item function when add item button is clicked  -->
+    <a href=# id=add_item><button>Add Item</button></a>
+    
+    <br>
+    <br>
+    <br>
+    <!--id for return of jquery function -will
+    be blank due to it returning nothing-->
+    <p id=result></p>
+    
+</body>

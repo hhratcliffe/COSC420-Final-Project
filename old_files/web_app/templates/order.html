@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <!-- Cite source here -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type=text/javascript>
+			$(function() {
+			  $('a#getOrder').bind('click', function() {
+				$.getJSON('/submit_order', {
+                  myitem: $('input[name="myitem"]').val(),
+				  mynum: $('input[name="mynum"]').val(),
+				}, function(data) {
+				  $("#result").text(data.result);
+				});
+				return false;
+			  });
+			});
+		</script>
+<body>
+    <h2><b><ul>Order Page</ul></b></h2>
+    <label><b>Please enter what you would like to order</b></label>
+    <!-- Add stock info here -->
+    <br>
+    <p>Items: {{data}}</p>
+    <br>
+    <label>Item Name:</label>
+    <br>
+    <input id = "item" type=text name = myitem>
+    <br>
+    <label>How Many:</label>
+    <br>
+    <input id = "num" type=number name = mynum>
+    <br>
+    <br>
+    <a href=# id=getOrder><button>Submit order</button></a>
+    
+    <br>
+    <br>
+    <p id=result></p>
+    
+</body>

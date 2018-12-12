@@ -1,0 +1,52 @@
+<!-- Group 2 - Harrison Ratcliffe, Julia Goyco, Stephanie Schoch, Toby Duncan
+ 
+Date: 12/6/18
+
+order.html contains HTML for presenting order page
+and passing data to back end for ordering functions
+-->
+<!DOCTYPE html>
+<html>
+    <!-- JQuery scripts adapted from: https://pythonprogramming.net/jquery-flask-tutorial/-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type=text/javascript>
+			$(function() {
+			  $('a#getOrder').bind('click', function() {
+				$.getJSON('/submit_order', {
+                  myitem: $('input[name="myitem"]').val(),
+				  mynum: $('input[name="mynum"]').val(),
+				}, function(data) {
+				  $("#result").text(data.result);
+				});
+				return false;
+			  });
+			});
+		</script>
+<body>
+    <!--Declaring HTML for presenting order page-->
+    <h2><b><ul>Order Page</ul></b></h2>
+    <label><b>Please enter what you would like to order</b></label>
+    <!-- Inserting item/stock information to web page -->
+    <br>
+    <p>Items: {{data}}</p>
+    <br>
+    <!--Inputs for item and amount to order -->
+    <label>Item Name:</label>
+    <br>
+    <input id = "item" type=text name = myitem>
+    <br>
+    <label>How Many:</label>
+    <br>
+    <input id = "num" type=number name = mynum>
+    <br>
+    <br>
+    <!--Calling order functions when submit button is clicked -->
+    <a href=# id=getOrder><button>Submit order</button></a>
+    
+    <br>
+    <br>
+    <!--id for return of jquery function -will
+    be blank due to it returning nothing-->
+    <p id=result></p>
+    
+</body>

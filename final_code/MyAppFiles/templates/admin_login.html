@@ -1,0 +1,57 @@
+<!-- Group 2 - Harrison Ratcliffe, Julia Goyco, Stephanie Schoch, Toby Duncan
+ 
+Date: 12/6/18
+
+admin_login.html contains HTML for presenting admin login page and
+confirming user is admin before sending them to admin page
+-->
+<!DOCTYPE html>
+<html>
+<body>
+    <!--HTML for presenting admin login page to user -->
+    <h2><b><ul>Admin Login Page</ul></b></h2>
+    <p>Please login in order to edit inventory stock</p>
+    <!--Inputs to get the user name and password -->
+    <label>Username:</label>
+    <br>
+    <input id = "usn" type="text">
+    <br>
+    <label>Password:</label>
+    <br>
+    <input id = "pass" type="password">
+    <br>
+    <!--Calling Javascript function to confirm admin 
+    crendentials and, if correct, sending user to admin page-->
+    <input type="button" id= "login " value = "Login" 
+           onclick="confirm_admin('usn','pass')">
+    
+    <br>
+    <br>
+    
+    
+</body>
+    <!--JavaScript function for confirming credentials-->
+    <!-- Login confirm JavaScript adapted from:
+https://www.formget.com/javascript-login-form/ -->
+    <script>
+    function confirm_admin(un,pw){
+        //gets values and then if both match the correct
+        //crendential values, sends user to admin management
+        //page
+        var username = document.getElementById(un).value;
+        var password = document.getElementById(pw).value;
+        if(username == "admin"){
+           if(password == "admin"){
+               
+               location.href = "admin.html";
+           }
+           }
+           
+           }
+    
+    
+    </script>
+
+
+
+</html>
